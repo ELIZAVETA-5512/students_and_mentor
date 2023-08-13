@@ -30,7 +30,8 @@ class Student:
             return average_grade(self.grades) < average_grade(other_student.grades)
         else:
             return None
- 
+
+
 # Класс преподавателей
 class Mentor:
     def __init__(self, name, surname):
@@ -67,9 +68,9 @@ class Reviewer(Mentor):
     def rate_hw(self, student, course, grade):
         if isinstance(student, Student) \
                 and course in self.courses_attached \
-                and course in specific_student.courses_in_progress:
+                and course in student.courses_in_progress:
  
-            if course in specific_student.grades:
+            if course in student.grades:
                 student.grades[course] += [grade]
             else:
                 student.grades[course] = [grade]
@@ -88,7 +89,7 @@ def average_grade(all_grades):
         average = round(sum(all_grades) / len(all_grades), 2)
         return average
     else:
-        return "Ошибка! Оценки храняться не в словаре и не в списке, или список состоит из вложенных списков"
+        return "Ошибка!"
 
 def average_course_grade(all_students, current_course):
     all_course_grades = []
@@ -133,7 +134,4 @@ cool_mentor.rate_hw(best_student, 'Python', 10)
 cool_mentor.rate_hw(best_student, 'Python', 10)
 
 print(best_student.grades)
-print(some_lecturer)
-print(some_mentor)
-print(some_student)
- 
+
